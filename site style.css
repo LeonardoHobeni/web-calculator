@@ -1,0 +1,52 @@
+
+.mainHeading
+{
+    font-size: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+span
+{
+    vertical-align: top;
+    font-size: 2em;
+}
+
+.Screen
+{
+    font-size:3em;
+    width: 7.5em;
+    margin-left: 13px;
+    margin-right: auto;
+    margin-bottom: 25px;
+    border: 2px solid rgb(123, 123, 133);
+}
+
+button
+{
+    width: 80px;
+    height: 60px;
+    margin-left:4px;
+    border-color: lavender;
+    border-radius: 7px;
+}
+
+.btnPar
+{
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: auto;
+}
+
+img
+{
+    width: 117px;
+}
+
+.deviceContainer
+{
+    margin: auto;
+    width: 30%; height: 500px;
+    border: 3px solid rgb(21, 21, 183);
+    padding: 10px;
+    border-radius: 10px;
+}
