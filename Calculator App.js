@@ -126,22 +126,22 @@ function performOperation(oper)
         case '+':
             for(let i=0; i<ind; i+=1)
                 newArrNum[newArrNum.length]=ArrNumbers[i];
-            newArrNum[newArrNum.length]= ArrNumbers[ind]+ArrNumbers[ind+1];
+            newArrNum[newArrNum.length]= Number(ArrNumbers[ind])+Number(ArrNumbers[ind+1]);
             break;
         case '-':
             for(let i=0; i<ind; i+=1)
                 newArrNum[newArrNum.length]=ArrNumbers[i];
-            newArrNum[newArrNum.length]= ArrNumbers[ind]-ArrNumbers[ind+1];
+            newArrNum[newArrNum.length]= Number(ArrNumbers[ind])-Number(ArrNumbers[ind+1]);
             break;
         case '\u00F7':
             for(let i=0; i<ind; i+=1)
                 newArrNum[newArrNum.length]=ArrNumbers[i];
-            newArrNum[newArrNum.length]= ArrNumbers[ind]/ArrNumbers[ind+1];
+            newArrNum[newArrNum.length]= Number(ArrNumbers[ind])/Number(ArrNumbers[ind+1]);
             break;
         case '\u00D7':
             for(let i=0; i<ind; i+=1)
                 newArrNum[newArrNum.length]=ArrNumbers[i];
-            newArrNum[newArrNum.length]= ArrNumbers[ind]*ArrNumbers[ind+1];
+            newArrNum[newArrNum.length]= Number(ArrNumbers[ind])*Number(ArrNumbers[ind+1]);
             break;
     }
     updateArrNum(ind);
