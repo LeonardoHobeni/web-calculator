@@ -169,12 +169,12 @@ function performOperation(oper)
                 newArrNum[newArrNum.length]=ArrNumbers[i];
             newArrNum[newArrNum.length]= Number(ArrNumbers[ind])-Number(ArrNumbers[ind+1]);
             break;
-        case '\u00F7':
+        case '/':
             for(let i=0; i<ind; i+=1)
                 newArrNum[newArrNum.length]=ArrNumbers[i];
             newArrNum[newArrNum.length]= Number(ArrNumbers[ind])/Number(ArrNumbers[ind+1]);
             break;
-        case '\u00D7':
+        case '*':
             for(let i=0; i<ind; i+=1)
                 newArrNum[newArrNum.length]=ArrNumbers[i];
             newArrNum[newArrNum.length]= Number(ArrNumbers[ind])*Number(ArrNumbers[ind+1]);
