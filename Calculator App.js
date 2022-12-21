@@ -97,31 +97,48 @@ function getSymbol(symbol)
     var screenEle= document.getElementById('outScreen');
     if(screenEle.innerText=='0' && symbol !='.')
         screenEle.innerText='';
-    screenEle.innerText+=symbol;
-    if(ArrOperators.includes(symbol))
+    if(symbol=='%')
     {
-        switch(symbol)
+        if(operationList.length>0)
         {
-            case '+':
-                operationList[operationList.length]='+';
-                break;
-            case '-':
-                operationList[operationList.length]='-';
-                break;
-            case '\u00F7':
-                operationList[operationList.length]='/';
-                break;
-            case '\u00D7':
-                operationList[operationList.length]='*';
-                break;
+            ArrNumbers[ArrNumbers.length-1]/=100;
+            screenEle.innerText+=symbol;
         }
-    }else if(!ArrOperators.includes(symbol) &&(ArrNumbers.length>operationList.length))
-    {
-        ArrNumbers[ArrNumbers.length-1]+=symbol;
+        else
+        {
+            Clear();
+        }
     }
     else
+        screenEle.innerText+=symbol;
+
+    if(symbol!='%')
     {
-        ArrNumbers[ArrNumbers.length]=symbol;
+        if(ArrOperators.includes(symbol))
+        {
+            switch(symbol)
+            {
+                case '+':
+                    operationList[operationList.length]='+';
+                    break;
+                case '-':
+                    operationList[operationList.length]='-';
+                    break;
+                case '\u00F7':
+                    operationList[operationList.length]='/';
+                    break;
+                case '\u00D7':
+                    operationList[operationList.length]='*';
+                    break;
+            }
+        }else if(!ArrOperators.includes(symbol) &&(ArrNumbers.length>operationList.length))
+        {
+            ArrNumbers[ArrNumbers.length-1]+=symbol;
+        }
+        else
+        {
+            ArrNumbers[ArrNumbers.length]=symbol;
+        }
     }
 }
 
