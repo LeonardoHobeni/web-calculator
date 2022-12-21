@@ -47,7 +47,7 @@ function buildCalculator(id)
             {Label:'C', Class:'Clear', func: 'Clear()'},
             {Label:'\u232b', Class:'BS', func:'backSpace()'},
             {Label:'\u00F7', Class:'Division', func:'getSymbol(\'\u00F7\')'},
-            {Label:'7', Class: 'Seven', func:'' },
+            {Label:'7', Class: 'Seven', func:'getSymbol("7")' },
             {Label:'8', Class: 'Eigth', func: 'getSymbol("8")'},
             {Label:'9', Class: 'Nine', func: 'getSymbol("9")'},
             {Label:'\u00D7', Class:'Multiplication', func:'getSymbol(\'\u00D7\')'},
@@ -61,6 +61,12 @@ function buildCalculator(id)
             {Label:'+', Class:'Addition', func:'getSymbol("+")'},
             {Label:'0', Class: 'Zero', func:'getSymbol("0")'},
             {Label: '.', Class:'point', func:'getSymbol(".")'},
-            {Label:'=', Class:'equal', func:'getSymbol("=")'},
+            {Label:'=', Class:'equal', func:'displayResults()'},
     ]);
+}
+
+function getSymbol(symbol)
+{
+    var screenEle= document.getElementById('outScreen');
+    screenEle.value=symbol;
 }

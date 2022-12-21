@@ -19,6 +19,7 @@ span
     margin-right: auto;
     margin-bottom: 25px;
     border: 2px solid rgb(123, 123, 133);
+    text-align: right;
 }
 
 button
@@ -27,7 +28,8 @@ button
     height: 60px;
     margin-left:4px;
     border-color: lavender;
-    border-radius: 7px;
+    border-radius: 28px;
+    font-size:1.4em;
 }
 
 .btnPar
