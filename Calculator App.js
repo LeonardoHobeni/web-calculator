@@ -71,9 +71,32 @@ function buildCalculator(id)
     ]);
 }
 
+function ClearEntry()
+{
+    var screenEle= document.getElementById('outScreen');
+    screenEle.innerText='0';
+    ArrNumbers=[];
+    operationList=[];
+}
+
+function Clear()
+{
+    var screenEle= document.getElementById('outScreen');
+    screenEle.innerText='0';
+    ArrNumbers=[];
+    operationList=[];
+}
+
+/*function backSpace()
+{
+    for(let i=0; i<)
+}*/
+
 function getSymbol(symbol)
 {
     var screenEle= document.getElementById('outScreen');
+    if(screenEle.innerText=='0' && symbol !='.')
+        screenEle.innerText='';
     screenEle.innerText+=symbol;
     if(ArrOperators.includes(symbol))
     {
@@ -104,13 +127,26 @@ function getSymbol(symbol)
 
 function displayResults()
 {   
+    var outScreen= document.getElementById('outScreen');
     if(ArrNumbers.length==operationList.length 
-        && (document.getElementById('outScreen')).innerText == '0')
+        && outScreen.innerText == '0')
     {
-        var outScreen= document.getElementById('outScreen');
-        outScreen.innerText='=0';
+        outScreen.innerText='0';
         outScreen.appendChild(Span);
     }
+    else if(ArrNumbers.length==operationList.length 
+        && !outScreen.innerText == '0')
+    {
+        alert('Syntax Error');
+    }
+    else
+    {
+        for(let oper of operationList)
+        {
+            performOperation(oper);
+        }
+    }
+    outScreen.innerText=ArrNumbers;
 }
 
 function findOperPos(oper)
@@ -150,7 +186,7 @@ function performOperation(oper)
 
 function updateArrNum(ind)
 {
-    for(let j=ind+1; j<ArrNumbers.length; j+=1)
+    for(let j=ind+2; j<ArrNumbers.length; j+=1)
         newArrNum[newArrNum.length]= ArrNumbers[j];
     ArrNumbers=newArrNum;
     newArrNum=[];
