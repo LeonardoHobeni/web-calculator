@@ -14,13 +14,16 @@ span
 .Screen
 {
     font-size:3em;
-    width: 7.5em;
-    margin-left: 13px;
-    margin-right: auto;
+    width: 7.7em;
+    margin-left: 12px;
+    margin-right: 5px;
     margin-bottom: 25px;
+    margin-top: 10px;
+    padding-right: 5px;
     border: 2px solid rgb(123, 123, 133);
     text-align: right;
 }
+
 
 button
 {

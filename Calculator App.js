@@ -1,3 +1,8 @@
+var ArrNumbers=[];//array to hold the numbers to be operated on
+var ArrOperators=['+', '\u00F7', '-', '\u00D7'];//array to hold the operators to perform the arithmetic operations
+var operationList=[];//array to hold 
+var newArrNum=[];
+var newOperList=[];
 function buildScreen(id)
 {
     var deviceContainer= document.getElementById(id);
@@ -6,9 +11,10 @@ function buildScreen(id)
     var outPar= document.createElement('p');
 
     //create output screen
-    var outScreen= document.createElement('input');
+    var outScreen= document.createElement('p');
     outScreen.className='Screen';
     outScreen.setAttribute('id', 'outScreen');
+    outScreen.innerText='0';
     outPar.appendChild(outScreen);
 
     deviceContainer.appendChild(outPar);
@@ -46,21 +52,21 @@ function buildCalculator(id)
             {Label:'CE', Class:'clearEntry', func:'ClearEntry()'},
             {Label:'C', Class:'Clear', func: 'Clear()'},
             {Label:'\u232b', Class:'BS', func:'backSpace()'},
-            {Label:'\u00F7', Class:'Division', func:'getSymbol(\'\u00F7\')'},
             {Label:'7', Class: 'Seven', func:'getSymbol("7")' },
             {Label:'8', Class: 'Eigth', func: 'getSymbol("8")'},
             {Label:'9', Class: 'Nine', func: 'getSymbol("9")'},
-            {Label:'\u00D7', Class:'Multiplication', func:'getSymbol(\'\u00D7\')'},
+            {Label:'\u00F7', Class:'Division', func:'getSymbol(\'\u00F7\')'},
             {Label:'4', Class: 'Four', func: 'getSymbol("4")'},
             {Label:'5' , Class: 'Five', func: 'getSymbol("5")'},
             {Label:'6', Class:'Six', func: 'getSymbol("6")'},
-            {Label: '-', Class:'Minus', func:'getSymbol("-")'},
+            {Label:'\u00D7', Class:'Multiplication', func:'getSymbol(\'\u00D7\')'},
             {Label:'1', Class:'One' , func: 'getSymbol("1")'},
             {Label:'2', Class:'Two', func:'getSymbol("2")'},
             {Label:'3', Class:'Three', func:'getSymbol("3")'},
-            {Label:'+', Class:'Addition', func:'getSymbol("+")'},
+            {Label: '-', Class:'Minus', func:'getSymbol("-")'},
             {Label:'0', Class: 'Zero', func:'getSymbol("0")'},
             {Label: '.', Class:'point', func:'getSymbol(".")'},
+            {Label:'+', Class:'Addition', func:'getSymbol("+")'},
             {Label:'=', Class:'equal', func:'displayResults()'},
     ]);
 }
@@ -68,5 +74,94 @@ function buildCalculator(id)
 function getSymbol(symbol)
 {
     var screenEle= document.getElementById('outScreen');
-    screenEle.value=symbol;
+    screenEle.innerText+=symbol;
+    if(ArrOperators.includes(symbol))
+    {
+        switch(symbol)
+        {
+            case '+':
+                operationList[operationList.length]='+';
+                break;
+            case '-':
+                operationList[operationList.length]='-';
+                break;
+            case '\u00F7':
+                operationList[operationList.length]='/';
+                break;
+            case '\u00D7':
+                operationList[operationList.length]='*';
+                break;
+        }
+    }else if(!ArrOperators.includes(symbol) &&(ArrNumbers.length>operationList.length))
+    {
+        ArrNumbers[ArrNumbers.length-1]+=symbol;
+    }
+    else
+    {
+        ArrNumbers[ArrNumbers.length]=symbol;
+    }
 }
+
+function displayResults()
+{   
+    if(ArrNumbers.length==operationList.length 
+        && (document.getElementById('outScreen')).innerText == '0')
+    {
+        var outScreen= document.getElementById('outScreen');
+        outScreen.innerText='=0';
+        outScreen.appendChild(Span);
+    }
+}
+
+function findOperPos(oper)
+{
+    return operationList.indexOf(oper);
+}
+
+function performOperation(oper)
+{   
+    var ind= findOperPos(oper);
+    switch(oper)
+    {
+        case '+':
+            for(let i=0; i<ind; i+=1)
+                newArrNum[newArrNum.length]=ArrNumbers[i];
+            newArrNum[newArrNum.length]= ArrNumbers[ind]+ArrNumbers[ind+1];
+            break;
+        case '-':
+            for(let i=0; i<ind; i+=1)
+                newArrNum[newArrNum.length]=ArrNumbers[i];
+            newArrNum[newArrNum.length]= ArrNumbers[ind]-ArrNumbers[ind+1];
+            break;
+        case '\u00F7':
+            for(let i=0; i<ind; i+=1)
+                newArrNum[newArrNum.length]=ArrNumbers[i];
+            newArrNum[newArrNum.length]= ArrNumbers[ind]/ArrNumbers[ind+1];
+            break;
+        case '\u00D7':
+            for(let i=0; i<ind; i+=1)
+                newArrNum[newArrNum.length]=ArrNumbers[i];
+            newArrNum[newArrNum.length]= ArrNumbers[ind]*ArrNumbers[ind+1];
+            break;
+    }
+    updateArrNum(ind);
+    updateOperList(ind);
+}
+
+function updateArrNum(ind)
+{
+    for(let j=ind+1; j<ArrNumbers.length; j+=1)
+        newArrNum[newArrNum.length]= ArrNumbers[j];
+    ArrNumbers=newArrNum;
+    newArrNum=[];
+}
+
+function updateOperList(ind)
+{
+    for(let i=0; i<operationList.length; i+=1)
+        if(ind!=i)
+            newOperList[newOperList.length]= operationList[i];
+    operationList=newOperList;
+    newOperList=[];
+}
+
