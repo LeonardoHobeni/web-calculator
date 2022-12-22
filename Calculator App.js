@@ -201,21 +201,19 @@ function displayResults()
         && outScreen.innerText == '0')
     {
         outScreen.innerText='0';
-        outScreen.appendChild(Span);
     }
     else if(ArrNumbers.length==operationList.length 
         && !outScreen.innerText == '0')
-    {
+    {   
+
         alert('Syntax Error');
     }
     else
     {
-        for(let oper of operationList)
-        {
-            performOperation(oper);
-        }
+        while(operationList.length>0)
+            BODMAS();
+        outScreen.innerText=ArrNumbers;
     }
-    outScreen.innerText=ArrNumbers;
 }
 
 function findOperPos(oper)
@@ -223,6 +221,20 @@ function findOperPos(oper)
     return operationList.indexOf(oper);
 }
 
+function BODMAS()
+{
+    if(operationList.length>0)
+    {
+        if(operationList.includes('*'))
+            performOperation('*');
+        if(operationList.includes('/'))
+            performOperation('/');
+        if(operationList.includes('+'))
+            performOperation('+');
+        if(operationList.includes('-'))
+            performOperation('-');
+    }
+}
 function performOperation(oper)
 {   
     var ind= findOperPos(oper);
@@ -249,6 +261,8 @@ function performOperation(oper)
             newArrNum[newArrNum.length]= Number(ArrNumbers[ind])*Number(ArrNumbers[ind+1]);
             break;
     }
+    if(!Number.isInteger(newArrNum[newArrNum.length-1]))
+        newArrNum[newArrNum.length-1]=(newArrNum[newArrNum.length-1]).toFixed(3);
     updateArrNum(ind);
     updateOperList(ind);
 }
