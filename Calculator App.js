@@ -53,7 +53,7 @@ function buildCalculator(id)
             {Label:'C', Class:'Clear', func: 'Clear()'},
             {Label:'\u232b', Class:'BS', func:'backSpace()'},
             {Label:'7', Class: 'Seven', func:'getSymbol("7")' },
-            {Label:'8', Class: 'Eigth', func: 'getSymbol("8")'},
+            {Label:'8', Class: 'Eight', func: 'getSymbol("8")'},
             {Label:'9', Class: 'Nine', func: 'getSymbol("9")'},
             {Label:'\u00F7', Class:'Division', func:'getSymbol(\'\u00F7\')'},
             {Label:'4', Class: 'Four', func: 'getSymbol("4")'},
@@ -110,7 +110,11 @@ function backSpace()
         backspaceOper();
     }
     if(str.length==0)
+    {
+        ArrNumbers=[];
+        operationList=[];
         screenEle.innerText='0';
+    }
 }
 
 function backspaceArrNum()

@@ -1,8 +1,15 @@
-
+body
+{
+    background-color: green;
+}
 .mainHeading
 {
     font-size: 3em;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    border: 6px solid rgb(63, 44, 44);
+    background: rgb(148, 227, 230);
+    color:green;
 }
 
 span
@@ -20,19 +27,59 @@ span
     margin-bottom: 25px;
     margin-top: 10px;
     padding-right: 5px;
-    border: 2px solid rgb(123, 123, 133);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+    border: 4px inset rgb(123, 123, 133);
     text-align: right;
+    background: white;
 }
 
+.Division
+{
+    background: yellow;
+    color:rgb(0, 0, 0);
+} 
+.Multiplication
+{
+    background-color: red;
+    color:white;
+}
+.Minus
+{
+    background: green;
+    color:white;
+} 
+.Addition
+{
+    background-color: orange;
+    color:white;
+}
+
+.Seven, .Eight, .Nine, .Four, .Five, .Six, .One, .Two, .Three, .Zero
+{
+    background: teal;
+    color: rgb(222, 222, 227);
+}
+
+.equal
+{
+    color: white;
+    background: rgb(65, 65, 233);
+    border-color: grey;
+    font-size:1.5em;
+    font-weight:900px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+}
 
 button
 {
     width: 80px;
     height: 60px;
     margin-left:4px;
-    border-color: lavender;
+    border: 3px outset grey;
     border-radius: 28px;
-    font-size:1.4em;
+    font-size:1.5em;
+    font-weight:100px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
 }
 
 .btnPar
@@ -51,7 +98,8 @@ img
 {
     margin: auto;
     width: 30%; height: 500px;
-    border: 3px solid rgb(21, 21, 183);
+    border: 25px outset rgb(63, 44, 44);
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
+    background: rgb(148, 227, 230);
 }
