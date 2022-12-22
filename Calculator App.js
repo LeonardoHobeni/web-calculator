@@ -87,10 +87,82 @@ function Clear()
     operationList=[];
 }
 
-/*function backSpace()
+function backSpace()
+{   
+    var screenEle= document.getElementById('outScreen');
+    screenEle.innerText='';
+    if(ArrNumbers.length>1&&operationList.length>0)
+    {
+        if(ArrNumbers.length>operationList.length)
+        {
+            for(let i=0; i<ArrNumbers.length; i+=1)
+            {
+                backspaceArrNum();
+                screenEle.innerText+=ArrNumbers[i];
+                if(operationList.length>=i)
+                    screenEle.innerText+=getArith(operationList[i]);
+            }
+        }
+        else
+        {
+            backspaceOper();
+
+            for(let i=0; i<operationList.length; i+=1)
+            {
+                if(ArrNumbers.length>i)
+                    screenEle.innerText+=ArrNumbers[i];
+                screenEle.innerText+=getArith(operationList[i]);
+            }
+        }
+    }
+    else if(ArrNumbers.length==1&&operationList.length>1)
+    {
+        backspaceOper();
+        for(let i=0; i<operationList.length; i+=1)
+        {   
+            if(ArrNumbers.length>i)
+                screenEle.innerText+=ArrNumbers[i];
+            screenEle.innerText+=getArith(operationList[i]);
+        }
+    }else if(ArrNumbers.length==1 && operationList.length==1)
+    {
+        screenEle.innerText+=ArrNumbers[0];
+        operationList=[];
+    }
+    else if(ArrNumbers.length == 1 || ArrNumbers.length == 0)
+        screenEle.innerText='0';
+}
+
+function backspaceArrNum()
 {
-    for(let i=0; i<)
-}*/
+    var backArr=[];
+    for(let i=0; i<(ArrNumbers.length-1); i+=1)
+        backArr[backArr.length]=ArrNumbers[i];
+    ArrNumbers=backArr;
+}
+
+function backspaceOper()
+{
+    var backArr=[];
+    for(let j=0; j<(operationList.length-1); j+=1)
+        backArr[backArr.length]=operationList[j];
+    operationList=backArr;
+}
+
+function getArith(oper)
+{
+    switch(oper)
+    {
+        case '+':
+            return '+';
+        case '*':
+            return '\u00D7';
+        case '/':
+            return '\u00F7';
+        case '-':
+            return '-';
+    }
+}
 
 function getSymbol(symbol)
 {
