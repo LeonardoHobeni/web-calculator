@@ -90,46 +90,26 @@ function Clear()
 function backSpace()
 {   
     var screenEle= document.getElementById('outScreen');
-    screenEle.innerText='';
-    if(ArrNumbers.length>1&&operationList.length>0)
+    var str=screenEle.innerText;
+    if(ArrNumbers.includes(str[str.length-1]))
     {
-        if(ArrNumbers.length>operationList.length)
-        {
-            for(let i=0; i<ArrNumbers.length; i+=1)
-            {
-                backspaceArrNum();
-                screenEle.innerText+=ArrNumbers[i];
-                if(operationList.length>=i)
-                    screenEle.innerText+=getArith(operationList[i]);
-            }
-        }
-        else
-        {
-            backspaceOper();
-
-            for(let i=0; i<operationList.length; i+=1)
-            {
-                if(ArrNumbers.length>i)
-                    screenEle.innerText+=ArrNumbers[i];
-                screenEle.innerText+=getArith(operationList[i]);
-            }
-        }
+        let newStr=str;
+        str='';
+        for(let i=0; i<newStr.length-1; i+=1)
+            str+=newStr[i];
+        screenEle.innerText=str;
+        backspaceArrNum();
     }
-    else if(ArrNumbers.length==1&&operationList.length>1)
+    else if(!ArrNumbers.includes(str[str.length-1]))
     {
+        let newStr=str;
+        str='';
+        for(let i=0; i<newStr.length-1; i+=1)
+            str+=newStr[i];
+        screenEle.innerText=str;
         backspaceOper();
-        for(let i=0; i<operationList.length; i+=1)
-        {   
-            if(ArrNumbers.length>i)
-                screenEle.innerText+=ArrNumbers[i];
-            screenEle.innerText+=getArith(operationList[i]);
-        }
-    }else if(ArrNumbers.length==1 && operationList.length==1)
-    {
-        screenEle.innerText+=ArrNumbers[0];
-        operationList=[];
     }
-    else if(ArrNumbers.length == 1 || ArrNumbers.length == 0)
+    if(str.length==0)
         screenEle.innerText='0';
 }
 
