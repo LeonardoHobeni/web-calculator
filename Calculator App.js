@@ -91,14 +91,14 @@ function backSpace()
 {   
     var screenEle= document.getElementById('outScreen');
     var str=screenEle.innerText;
-    if(ArrNumbers.includes(str[str.length-1]))
+    if(!isNaN(Number(str[str.length-1])) || str[str.length-1] == '.')
     {
         let newStr=str;
         str='';
-        for(let i=0; i<newStr.length-1; i+=1)
+        for(let i=0; i<(newStr.length-1); i+=1)
             str+=newStr[i];
         screenEle.innerText=str;
-        backspaceArrNum();
+        backspaceArrNum(str);
     }
     else if(!ArrNumbers.includes(str[str.length-1]))
     {
@@ -117,12 +117,28 @@ function backSpace()
     }
 }
 
-function backspaceArrNum()
+function backspaceArrNum(str)
 {
-    var backArr=[];
-    for(let i=0; i<(ArrNumbers.length-1); i+=1)
-        backArr[backArr.length]=ArrNumbers[i];
-    ArrNumbers=backArr;
+    var numstr='';
+    if(!isNaN(Number(str)))
+    {
+        ArrNumbers[ArrNumbers.length-1]= str;
+    }
+    else
+    {
+        for(let i=1; i<str.length; i+=1)
+        {
+            if(!isNaN(str[str.length-i]) || str[str.length-i] == '.')
+                numstr= str[str.length-i]+numstr;
+            else
+                break;
+        }
+        
+        if(ArrNumbers.length != 1)
+            ArrNumbers[ArrNumbers.length-1]=numstr;
+        if(ArrNumbers.length==1 && numstr!='')
+            ArrNumbers[ArrNumbers.length-1]=numstr;
+    }
 }
 
 function backspaceOper()
@@ -206,7 +222,7 @@ function displayResults()
     {
         outScreen.innerText='0';
     }
-    else if(ArrNumbers.length==operationList.length 
+    else if(ArrNumbers.length==operationList.length || ArrNumbers.length<operationList.length
         && !outScreen.innerText == '0')
     {   
 
@@ -229,10 +245,10 @@ function BODMAS()
 {
     if(operationList.length>0)
     {
-        if(operationList.includes('*'))
-            performOperation('*');
         if(operationList.includes('/'))
             performOperation('/');
+        if(operationList.includes('*'))
+            performOperation('*');
         if(operationList.includes('+'))
             performOperation('+');
         if(operationList.includes('-'))
