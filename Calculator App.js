@@ -7,17 +7,13 @@ function buildScreen(id)
 {
     var deviceContainer= document.getElementById(id);
 
-    //create output paragraph
-    var outPar= document.createElement('p');
-
     //create output screen
-    var outScreen= document.createElement('p');
+    var outScreen= document.createElement('div');
     outScreen.className='Screen';
     outScreen.setAttribute('id', 'outScreen');
     outScreen.innerText='0';
-    outPar.appendChild(outScreen);
 
-    deviceContainer.appendChild(outPar);
+    deviceContainer.appendChild(outScreen);
 }
 
 function buildButtons(id, schema)

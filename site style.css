@@ -1,15 +1,19 @@
 body
 {
     background-color: green;
+    width: 100%;
+    height: 740px;
 }
+
 .mainHeading
 {
-    font-size: 3em;
+    font-size: 0;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    border: 6px solid rgb(63, 44, 44);
+    border: 6px none rgb(63, 44, 44);
     background: rgb(148, 227, 230);
     color:green;
+    display: hidden;
 }
 
 span
@@ -21,14 +25,14 @@ span
 .Screen
 {
     font-size:3em;
-    width: 7.7em;
-    margin-left: 12px;
-    margin-right: 5px;
-    margin-bottom: 25px;
-    margin-top: 10px;
+    top: 15px;
+    position: absolute;
+    right: 6px;
+    left: 6px;
     padding-right: 5px;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
-    border: 4px inset rgb(123, 123, 133);
+    border: 4px none rgb(123, 123, 133);
+    box-shadow: inset 0 -1px 8px rgb(52, 41, 41);
     text-align: right;
     background: white;
 }
@@ -72,34 +76,82 @@ span
 
 button
 {
-    width: 80px;
-    height: 60px;
-    margin-left:4px;
-    border: 3px outset grey;
-    border-radius: 28px;
-    font-size:1.5em;
-    font-weight:100px;
+    width:100%;
+    height: 70px;
+    border: 3px hidden grey;
+    border-radius: 35px;
+    box-shadow: inset 8px -8px 20px rgb(46, 28, 28);
+    justify-content: center;
+    font-size:2.5em;
+    font-weight:500;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+    transition: opacity 29ms;
+}
+
+button:active
+{
+    opacity: 0.6;
 }
 
 .btnPar
 {
-    display: inline-block;
-    margin-left: 10px;
+   
     margin-top: auto;
+    width: 100;
 }
 
 img
 {
     width: 117px;
+    display: none;
 }
 
 .deviceContainer
 {
     margin: auto;
-    width: 30%; height: 500px;
-    border: 25px outset rgb(63, 44, 44);
-    padding: 10px;
+    position: relative;
+    display: grid;
+    grid-template-columns:60px 60px 60px 60px;
+    width: 90%; height: 500px;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    border: 25px hidden rgb(63, 44, 44);
+    padding: 90px 10px 0 10px;
     border-radius: 15px;
     background: rgb(148, 227, 230);
+}
+
+@media (min-width: 700px)
+{
+    .deviceContainer
+    {
+        grid-template-columns: 150px 150px 150px 150px;
+    }
+}
+
+@media (min-width:900px)
+{
+    .mainHeading
+    {
+        font-size: 4em;
+        display: hidden;
+    }
+
+    .deviceContainer
+    {
+        grid-template-columns: 260px 260px 260px 260px;
+    }
+
+    .Screen
+    {
+        font-size:4em;
+    }
+
+    img
+    {
+        width: 117px;
+        display:inline-block;
+        margin-top: 10px;
+    }
 }
