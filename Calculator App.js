@@ -5,11 +5,11 @@ var newArrNum=[];
 var newOperList=[];
 function buildScreen(id)
 {
-    var deviceContainer= document.getElementById(id);
+    var deviceContainer= document.querySelector('#'+id);
 
     //create output screen
     var outScreen= document.createElement('div');
-    outScreen.className='Screen';
+    outScreen.classList.add('Screen');
     outScreen.setAttribute('id', 'outScreen');
     outScreen.innerText='0';
 
@@ -18,7 +18,7 @@ function buildScreen(id)
 
 function buildButtons(id, schema)
 {   
-    var deviceContainer= document.getElementById(id);
+    var deviceContainer= document.querySelector('#'+id);
     for(let item of schema)
     {
         let itemElement= makeElement(item);
@@ -29,10 +29,10 @@ function buildButtons(id, schema)
 function makeElement(descript)
 {
     var btnPar= document.createElement('p');
-    btnPar.className="btnPar";
+    btnPar.classList.add("btnPar");
     //create button
     var btnEle= document.createElement('button');
-    btnEle.className= descript.Class;
+    btnEle.classList.add(descript.Class);
     btnEle.innerText= descript.Label;
     btnEle.setAttribute('onclick', descript.func);
     btnPar.appendChild(btnEle);
@@ -69,7 +69,7 @@ function buildCalculator(id)
 
 function ClearEntry()
 {
-    var screenEle= document.getElementById('outScreen');
+    var screenEle= document.querySelector('#outScreen');
     screenEle.innerText='0';
     ArrNumbers=[];
     operationList=[];
@@ -77,7 +77,7 @@ function ClearEntry()
 
 function Clear()
 {
-    var screenEle= document.getElementById('outScreen');
+    var screenEle= document.querySelector('#outScreen');
     screenEle.innerText='0';
     ArrNumbers=[];
     operationList=[];
@@ -85,7 +85,7 @@ function Clear()
 
 function backSpace()
 {   
-    var screenEle= document.getElementById('outScreen');
+    var screenEle= document.querySelector('#outScreen');
     var str=screenEle.innerText;
     if(!isNaN(Number(str[str.length-1])) || str[str.length-1] == '.')
     {
@@ -162,7 +162,7 @@ function getArith(oper)
 
 function getSymbol(symbol)
 {
-    var screenEle= document.getElementById('outScreen');
+    var screenEle= document.querySelector('#outScreen');
     if(screenEle.innerText=='0' && symbol !='.')
         screenEle.innerText='';
     if(symbol=='%')
@@ -212,7 +212,7 @@ function getSymbol(symbol)
 
 function displayResults()
 {   
-    var outScreen= document.getElementById('outScreen');
+    var outScreen= document.querySelector('#outScreen');
     if(ArrNumbers.length==operationList.length 
         && outScreen.innerText == '0')
     {
